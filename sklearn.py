@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 # Загрузка данных о винах
 wine_data = datasets.load_wine()
 features = wine_data.data  # Характеристики вин
-labels = wine_data.target # Типы вин
+labels = wine_data.target  # Типы вин
 
 # Разделение данных на обучающую и тестовую выборки
 train_features, test_features, train_labels, test_labels = train_test_split(
@@ -15,15 +15,14 @@ train_features, test_features, train_labels, test_labels = train_test_split(
 )
 
 # Создание и обучение модели классификации
-model = MLPClassifier(hidden_layer_sizes=(100,), max_iter=300, random_state=42) # Многослойный перцептрон
-model.fit(train_features, train_labels) # Обучение модели
+model = MLPClassifier(hidden_layer_sizes=(100,), max_iter=300, random_state=42)  # Многослойный перцептрон
+model.fit(train_features, train_labels)  # Обучение модели
 
 # Прогнозирование на тестовых данных
 predicted_labels = model.predict(test_features)
 
 # Вычисление точности
-correct_predictions = np.sum(predicted_labels == test_labels)
-total_samples = len(test_labels)
-precision = correct_predictions / total_samples
+precision = accuracy_score(test_labels, predicted_labels)
 
-print(f'Точность результата: {precision:.2f}')
+# Вывод результата
+print(f'Точность классификации: {precision:.2f}')
