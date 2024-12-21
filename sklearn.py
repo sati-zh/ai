@@ -1,4 +1,3 @@
-import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
@@ -6,8 +5,8 @@ from sklearn.metrics import accuracy_score
 
 # Загрузка данных о винах
 wine_data = datasets.load_wine()
-features = wine_data.data  # Характеристики вин
-labels = wine_data.target  # Типы вин
+features = wine_data.data.tolist()  # Характеристики вин в виде списка
+labels = wine_data.target.tolist()   # Типы вин в виде списка
 
 # Разделение данных на обучающую и тестовую выборки
 train_features, test_features, train_labels, test_labels = train_test_split(
